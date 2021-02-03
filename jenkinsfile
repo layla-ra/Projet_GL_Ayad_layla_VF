@@ -1,0 +1,24 @@
+pipeline
+{
+agent any 
+      tools{
+      maven'apache-maven-3.6.3-bin'
+      jdk'jdk1.8.0_271'
+      }
+      stages {
+        stage('Build') {
+            steps {
+            bat 'mvn compiler:compile.'
+            }
+            post
+            {
+               success{
+               echo 'project compilé avec succès'
+                     }
+               failure{
+                echo 'erreur de compilation '
+               }
+            }
+        }
+    }
+}
